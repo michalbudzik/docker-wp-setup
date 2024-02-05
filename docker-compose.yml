@@ -1,0 +1,141 @@
+version: "3.8" 
+services:
+  nginx:
+    container_name: ${APP_NAME}-proxy
+    image: nginx:latest
+    restart: always
+    depends_on:
+      - wordpress
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.conf
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./nginx/:/etc/nginx/templates/
+      - ./certs:/etc/certs
+      - wordpress:/var/www/html
+    ports:
+      - '80:80'
+      - '443:443'
+  db:
+    container_name: ${APP_NAME}-db
+    image: mariadb:10.4.27
+    restart: always
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_DATABASE_FILE: /run/secrets/db_name
+      MYSQL_USER_FILE: /run/secrets/db_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+    volumes:
+      - db:/var/lib/mysql
+      # - ./database/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    container_name: ${APP_NAME}-phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER_FILE: /run/secrets/db_user
+      PMA_PASSWORD_FILE: /run/secrets/db_password
+      UPLOAD_LIMIT: 128M
+      PMA_PORT: 3306
+    secrets:
+      - db_user
+      - db_password
+    volumes:
+      - ./config/phpmyadmin.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
+    links:
+      - db
+    ports:
+      - 8081:80
+  wordpress:
+    container_name: ${APP_NAME}-wordpress
+    image: wordpress:6.4.3-php8.1-apache
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME_FILE: /run/secrets/db_name
+      WORDPRESS_DB_USER_FILE: /run/secrets/db_user
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_TABLE_PREFIX_FILE: /run/secrets/db_prefix
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_AUTO_UPDATE_CORE', false);
+        define('WP_CACHE', false);
+        define('ENVIRONMENT', 'local');   
+        
+        define('WORDPRESS_SMTP_AUTH', false);
+        define('WORDPRESS_SMTP_SECURE', '');
+        define('WORDPRESS_SMTP_HOST', 'mailhog');
+        define('WORDPRESS_SMTP_PORT', '1025');
+        define('WORDPRESS_SMTP_USERNAME', null);
+        define('WORDPRESS_SMTP_PASSWORD', null);
+        define('WORDPRESS_SMTP_FROM', `no-reply@${DOMAIN}`);
+        define('WORDPRESS_SMTP_FROM_NAME', `${APP_NAME_NICE}`);
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+      - db_prefix
+    ports:
+      - 8000:80
+    volumes:
+      - wordpress:/var/www/html
+      - ../wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ../wp-content/plugins:/var/www/html/wp-content/plugins
+      - ../wp-content/themes:/var/www/html/wp-content/themes
+      - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./logs:/var/www/html/docker/logs
+  wp-cli:
+    container_name: ${APP_NAME}-wp-cli
+    image: wordpress:cli-2.9.0-php8.1
+    restart: on-failure
+    depends_on:
+      - db
+      - wordpress
+    user: xfs
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME_FILE: /run/secrets/db_name
+      WORDPRESS_DB_USER_FILE: /run/secrets/db_user
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_TABLE_PREFIX_FILE: /run/secrets/db_prefix
+      WP_CLI_CACHE_DIR: /var/www/html/.wp-cli/cache/
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+      - db_prefix
+    volumes:
+      - wordpress:/var/www/html
+      - ../wp-content/mu-plugins/:/var/www/html/wp-content/mu-plugins
+      - ../wp-content/plugins/:/var/www/html/wp-content/plugins
+      - ../wp-content/themes:/var/www/html/wp-content/themes
+    # command: wp search-replace 'https://{your domain goes here}' 'https://localhost.{your domain goes here}'
+  mailhog:
+    container_name: ${APP_NAME}-mailhog
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+volumes:
+  db:
+  wordpress:
+secrets:
+  db_name:
+    file: ./creds/db_name.txt
+  db_user:
+    file: ./creds/db_user.txt    
+  db_password:
+    file: ./creds/db_password.txt
+  db_prefix:
+    file: ./creds/db_prefix.txt
