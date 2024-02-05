@@ -1,7 +1,3 @@
-/docker/certs
-/docker/creds
-/docker/logs
-/wp-content/mu-plugins/index.php
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-content/uploads/
+/certs
+/creds
+/logs
