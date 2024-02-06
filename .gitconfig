@@ -1,0 +1,2 @@
+[filter "hidesecrets"]
+	clean = ./cli/hide-secrets.sh

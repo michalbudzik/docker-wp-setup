@@ -1,1 +1,1 @@
-./creds/ filter=hidesecrets
+./creds/* filter=hidesecrets
