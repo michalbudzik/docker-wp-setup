@@ -3,5 +3,5 @@
 # truncate -s 0 ../creds/*.txt
 # sed 's/elo/xxx/g'
 # sed -i d %f
-echo $1
+sed "s/=.*/\"\"/g"
 # truncate -s 0 $1
