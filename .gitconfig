@@ -1,2 +1,4 @@
+[core]
+	ignorecase = false
 [filter "hidesecrets"]
-	clean = cli/hide-secrets.sh
+	clean = ./cli/hide-secrets.sh
