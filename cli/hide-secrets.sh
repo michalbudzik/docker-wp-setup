@@ -4,3 +4,4 @@
 # sed 's/elo/xxx/g'
 # sed -i d %f
 # truncate -s 0 $1
+echo $1
