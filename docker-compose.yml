@@ -93,6 +93,7 @@ services:
       - ../wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
       - ../wp-content/plugins:/var/www/html/wp-content/plugins
       - ../wp-content/themes:/var/www/html/wp-content/themes
+      - ../wp-content/uploads:/var/www/html/wp-content/uploads
       - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./logs:/var/www/html/docker/logs
   wp-cli:
@@ -120,6 +121,7 @@ services:
       - ../wp-content/mu-plugins/:/var/www/html/wp-content/mu-plugins
       - ../wp-content/plugins/:/var/www/html/wp-content/plugins
       - ../wp-content/themes:/var/www/html/wp-content/themes
+      - ../wp-content/uploads:/var/www/html/wp-content/uploads
     # command: wp search-replace 'https://{your domain goes here}' 'https://localhost.{your domain goes here}'
   mailhog:
     container_name: ${APP_NAME}-mailhog
