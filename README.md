@@ -1,12 +1,9 @@
 ## Setup Instructions
 
-1. Pull repository to your local machine
+1. Pull repository to your local working directory as a separate folder
 2. Edit .env file and fill it with config data
-3. Run docker/cli/add-hosts.sh to edit hosts file on Windows machine
-4. Run docker/cli/create-cert.sh to create SSL certificate for local use
-5. Create docker/creds folder with following files containing relevant values:
-   - db_name.txt
-   - db_prefix.txt
-   - db_user.txt
-   - db_password.txt
-6. Run docker-compose up -d
+3. Edit files in secrets folder and fill them with relevant values
+4. Run install/add-hosts.sh to edit hosts file on Windows machine
+5. Run install/create-cert.sh to create SSL certificate for local use
+6. Run install/git-config.sh to add clean filter to prevent uploading .env and secrets to remote reepository 
+7. Run "docker-compose up -d" from docker-wp-setup directory

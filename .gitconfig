@@ -1,4 +1,4 @@
 [filter "hidesecrets"]
-	clean = ./cli/hide-secrets.sh %f
+	clean = ./filters/hide-secrets.sh %f
 [filter "hideenv"]
-	clean = ./cli/hide-env.sh %f
+	clean = ./filters/hide-env.sh %f

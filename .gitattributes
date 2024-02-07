@@ -1,2 +1,2 @@
-creds/*.txt filter=hidesecrets
+secrets/*.txt filter=hidesecrets
 .env filter=hideenv

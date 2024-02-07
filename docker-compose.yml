@@ -132,10 +132,10 @@ volumes:
   wordpress:
 secrets:
   db_name:
-    file: ./creds/db_name.txt
+    file: ./secrets/db_name.txt
   db_user:
-    file: ./creds/db_user.txt    
+    file: ./secrets/db_user.txt    
   db_password:
-    file: ./creds/db_password.txt
+    file: ./secrets/db_password.txt
   db_prefix:
-    file: ./creds/db_prefix.txt
+    file: ./secrets/db_prefix.txt
