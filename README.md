@@ -3,6 +3,7 @@
 ## Overview
 
 I needed a quick `Docker` setup allowing me to work locally on `Wordpress` projects. After reading and watching a ton of tutorials I managed to compile all that new knowledge into a working repository you can simply pull and start using. The main workflow idea is like this:
+
 1. copy all necessary files into project's subdirectory on your drive
 2. fill project's data
 3. run few needed `bash` scripts
