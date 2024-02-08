@@ -11,21 +11,29 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 
 ## Install Instructions
 
-1. Pull repository to your local working directory as a separate folder
+1. Clone repository to your local working directory as a separate folder
+2. Navigate to repository's directory
+   ```bash
+   cd docker-wp-setup
+   ```
 2. Edit `.env` file and fill it with config data
 3. Edit files in `secrets` folder and fill them with relevant values
 4. Run `install/add-hosts.sh` to edit `hosts` file on `Windows` machine
+   ```bash
+   bash add-hosts.sh
+   ```
 5. Run `install/create-cert.sh` to create `SSL` certificate for local use
 6. Run `install/git-config.sh` to add clean filter to prevent uploading .env and secrets to remote reepository 
 7. Run `Docker` containers from `docker-wp-setup` directory
+
+   ```bash
+   docker-compose up -d
    ```
-   bash docker-compose up -d
-   ```
-   
+
 ## Detailed decription
 
 Most of the magic happens in `docker-coompose.yml` file. It runs six containers:
-- `nginx` server (to allow local ssl certificates and domain mapping)
+- `nginx` server (to allow local `SSL` certificates and domain mapping)
 - `MariaDB` database (or `MySQL` or any other system you prefer) 
 - `phpMyAdmin` (for some manual database manipulation through gui, `adminer` should work too)
 - `Wordpress` with chosen PHP version (obviously)
