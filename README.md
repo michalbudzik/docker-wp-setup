@@ -59,7 +59,7 @@ There are some additional mounts for server config files:
 
 Apparently it's a bad practice to hold credentials or other secrets as environment variables hence the `secrets` folder. There are four files there, each for a single variable. They are all needed for `Wordpress` database to work. Each file should include only a single secret value corresponding with the filename. No quotes, no double quotes, just value. 
 
-This way `.env` file contains only project's name for a few different occasions, `IP` address and local domain.
+This way `.env` file contains only project's name for a few different display slots in `Docker`, `IP` address and local domain.
 
 `install/git-config.sh` executed during install process makes sure that local `.gitconfig` is being loaded by `GIT`. `.gitconfig` and `.gitattributes` (loaded automatically) define two `clean` filters that accordingly truncate `.env` and files from `secrets` folder removing any sensitive data while pushing repo back to origin.
 
