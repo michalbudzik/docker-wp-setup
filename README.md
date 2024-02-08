@@ -12,19 +12,12 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 ## Install Instructions
 
 1. Clone repository to your local working directory as a separate folder
-2. Navigate to repository's directory
-   ```bash
-   cd docker-wp-setup
-   ```
 2. Edit `.env` file and fill it with config data
 3. Edit files in `secrets` folder and fill them with relevant values
 4. Run `install/add-hosts.sh` to edit `hosts` file on `Windows` machine
-   ```bash
-   bash add-hosts.sh
-   ```
 5. Run `install/create-cert.sh` to create `SSL` certificate for local use
 6. Run `install/git-config.sh` to add clean filter to prevent uploading .env and secrets to remote reepository 
-7. Run `Docker` containers from `docker-wp-setup` directory
+7. Run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
    docker-compose up -d
@@ -33,6 +26,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 ## Detailed decription
 
 Most of the magic happens in `docker-coompose.yml` file. It runs six containers:
+
 - `nginx` server (to allow local `SSL` certificates and domain mapping)
 - `MariaDB` database (or `MySQL` or any other system you prefer) 
 - `phpMyAdmin` (for some manual database manipulation through gui, `adminer` should work too)
@@ -41,9 +35,18 @@ Most of the magic happens in `docker-coompose.yml` file. It runs six containers:
 - `MailHog` SMTP server (for testing e-mails sent by Wordpress)
 
 It also creates two named volumes for `Wordpress` Core files and the database. They won't be visible on the local file system but all the data will persist between containers restarts. Probably there are some use cases when you would actually need local access to `Wordpress` core files, but usually all the work happens inside `wp-content` folder. At first I wanted to bind-mount it as a whole, but finally for hygiene's sake I decided to mount only its four subdirectories:
+
 - `mu-plugins`
 - `plugins`
 - `themes`
 - `uploads`
 
 This way I don't have to watch empty `index.php` and `upgrade` folder all the time. It's just cleaner this way.
+
+There are some additional mounts for config files:
+
+- `nginx/default.conf.conf` for: 
+   - `SSL` and local domain configuration (no need to meddle there)
+   - changing `client_max_body_size` value to allow bigger file uploads in `Wordpress`
+- `config/php.ini` for typical `PHP` settings
+- `phpmyadmin.ini` for bigger file uploads in `phpMyAdmin`
