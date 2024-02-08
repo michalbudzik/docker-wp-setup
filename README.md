@@ -63,4 +63,4 @@ This way `.env` file contains only project's name for a few different display sl
 
 `install/git-config.sh` executed during install process makes sure that local `.gitconfig` is being loaded by `GIT`. `.gitconfig` and `.gitattributes` (loaded automatically) define two `clean` filters that accordingly truncate `.env` and files from `secrets` folder removing any sensitive data while pushing repo back to origin.
 
-One could argue that all those layers of security are rather pointless here, especially considering that database credentials are for local purposes only and in no way connected with the actual live website online, but in case of developing this setup a little further one might realise that suddenly his login data is available for everyone. So let's keep it clean.     
+One could argue that all those layers of security are rather pointless here, especially considering that database credentials are for local purposes only and in no way connected with the actual live website online, but in case of developing this setup a little further one might realize that suddenly his login data is available for everyone. So let's keep it clean.     
