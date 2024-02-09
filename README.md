@@ -14,8 +14,8 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 
 - [`GIT`](https://git-scm.com/downloads) (actually not necessary for most of it to work, but surely helpful)
 - [`Docker`](https://www.docker.com/products/docker-desktop/) (creates 'virtual machine like' containers on your system)
-- [`mkcert`](mkcert.dev) (generates local `SSL` certificates)
-- [`gsudo`](gerardog.github.io/gsudo) (allows running bash scripts with elevated privileges on `Windows` machine)
+- [`mkcert`](https://mkcert.dev) (generates local `SSL` certificates)
+- [`gsudo`](https://gerardog.github.io/gsudo) (allows running bash scripts with elevated privileges on `Windows` machine)
 - [`Visual Studio Code`](https://code.visualstudio.com/) (or any other code editor you prefer)
 
 ## Install Instructions
