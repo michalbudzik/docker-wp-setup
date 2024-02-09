@@ -120,14 +120,14 @@ Once you successfully run `Docker` containers you can leave `docker-wp-setup` fo
 
 ```bash
 project-directory
-|-- .git
+.
 |-- docker-wp-setup
-    |-- config
-    |-- filters
-    |-- install
-    |-- nginx
-    |-- secrets
-    `-- uploads
+|   |-- config
+|   |-- filters
+|   |-- install
+|   |-- logs
+|   |-- nginx
+|   `-- secrets
 `-- wp-content
     |-- mu-plugins
     |-- plugins
