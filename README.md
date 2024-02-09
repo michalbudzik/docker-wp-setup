@@ -44,7 +44,6 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    ```bash
    cd install
    bash add-hosts.sh
-   cd ..
    ```
 
 5. Run `install/create-cert.sh` to create `SSL` certificate for local use:
@@ -57,12 +56,12 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 
    ```bash
    bash git-config.sh
-   cd ..
    ```
 
 7. Make sure `Docker` is active and Run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
+   cd ..
    docker-compose up -d
    ```
 
