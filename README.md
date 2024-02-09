@@ -119,15 +119,15 @@ Responsible for creating `SSL` certificate for your local domain set in `.env` f
 Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. To me it was essential here to fully isolate all setup files from actual work happening in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by default and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
 
 ```bash
-**project-directory**
-├── **docker-wp-setup**
+project-directory
+├── docker-wp-setup
 │   ├── config
 │   ├── filters
 │   ├── install
 │   ├── logs
 │   ├── nginx
 │   └── secrets
-└── **wp-content**
+└── wp-content
     ├── mu-plugins
     ├── plugins
     ├── themes
