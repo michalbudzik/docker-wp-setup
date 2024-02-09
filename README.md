@@ -116,11 +116,14 @@ Responsible for creating `SSL` certificate for your local domain set in `.env` f
 
 ### Usage, Folder Structure, Git Workflow
 
-Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. To me it was essential here to fully isolate all setup files from actual work happening in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by default and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
+Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to get back here is to turn off your containers or run them again. Treat it as an on/off switch. To me it was essential here to fully isolate all setup files from actual work happening in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by default and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
+
+After install process your project directory should look like this. Oh, there hopefully won't be `logs` catalog as it's being created when `Wordpress` encounters its first error. 
 
 ```bash
-project-directory
+.
 ├── docker-wp-setup
+│   ├── certs
 │   ├── config
 │   ├── filters
 │   ├── install
@@ -143,13 +146,13 @@ Apart from `WP-CLI` run by command line there are three main access points to yo
 
 ## Acknowledgments
 
-I'm in no way any kind of pro when it comes to `Docker` so to make it all work I had to dig through quite a lot of blogs, forums and `Stack Overflow` discussions. Resources below are those who happened to be most useful while preparing tis repository:
+I'm in no way any kind of pro when it comes to `Docker` so to make it all work I had to dig through quite a lot of blogs, forums and `Stack Overflow` discussions. Resources below are those who happened to be most useful while preparing this repository:
 
-- aplauche: [`Docker`/`Wordpress` setup that was the great starting code base for this repository](https://github.com/aplauche/docker-wordpress-local)
+- aplauche: [`Docker`/`Wordpress` setup that was the great starting code base for this repo](https://github.com/aplauche/docker-wordpress-local)
 - joshmoto: [Repo with very good complete `Docker`/`Wordpress` setups collection for different scenarios](https://github.com/joshmoto/docker-wordpress-meetup-demo)
-- bonnick.dev: [Very helpful blog post presenting complete example of `Docker`/`Wordpress` setup with detailed instructions for using it with `MailHog`](https://bonnick.dev/posts/developing-wordpress-with-docker)
+- bonnick.dev: [Very helpful `Docker`/`Wordpress` setup with detailed instructions for using it with `MailHog`](https://bonnick.dev/posts/developing-wordpress-with-docker)
 - spacelift.io: [`Docker` `Secrets` explained](https://spacelift.io/blog/docker-secrets)
-- objectpartners.com: [Very detailed explanation of `Docker`/`Wordpress` setup including `WP-CLI` container & proxy configuration](https://objectpartners.com/2020/09/01/local-wordpress-development-with-docker/)
+- objectpartners.com: [Detailed explanation of `Docker`/`Wordpress` setup including `WP-CLI` container & proxy config](https://objectpartners.com/2020/09/01/local-wordpress-development-with-docker/)
 - zerowp.com: [`Docker`/`Wordpress` setup with `docker-compose.yml` focused on `WP-CLI` configuration](https://zerowp.com/wordpress-and-docker/)
 
 
