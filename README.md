@@ -60,7 +60,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    cd ..
    ```
 
-7. Run `Docker` containers from `docker-wp-setup` directory:
+7. Make sure `Docker` is active and Run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
    docker-compose up -d
