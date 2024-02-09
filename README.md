@@ -26,10 +26,10 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 
 ## Requirements
 
-- Docker
-- GIT Bash
-- mkcert
-- gsudo
+- `[GIT](https://git-scm.com/downloads)` (actually non necessary for most of it to work, but surely helpful)
+- `[Docker](https://www.docker.com/products/docker-desktop/)` (creates 'virtual machine like' containers on your machine)
+- `[mkcert](mkcert.dev)` (generates local `SSL` certificates)
+- `[gsudo](gerardog.github.io/gsudo)` (allows tu run bash script with elevated privileges on `Windows` machine)
 
 ## Detailed decription
 
