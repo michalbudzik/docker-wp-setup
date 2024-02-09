@@ -39,29 +39,20 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    code secrets/*
    ```
 
-4. Run `install/add-hosts.sh` to edit `hosts` file on `Windows` machine:
-
+4. Run `install/_install_.sh` to run necessary scripts:
+   - `add-hosts.sh` to edit `hosts` file on `Windows` machine:
+   - `create-cert.sh` to create `SSL` certificate for local use:
+   - `git-config.sh` to add `clean` filter to prevent uploading `.env` and secrets to remote reepository
+   
    ```bash
    cd install
-   bash add-hosts.sh
-   ```
-
-5. Run `install/create-cert.sh` to create `SSL` certificate for local use:
-
-   ```bash
-   bash create-cert.sh
-   ```
-
-6. Run `install/git-config.sh` to add `clean` filter to prevent uploading .env and secrets to remote reepository: 
-
-   ```bash
-   bash git-config.sh
+   bash install.sh
+   cd ..
    ```
 
 7. Make sure `Docker` is active and Run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
-   cd ..
    docker-compose up -d
    ```
 
