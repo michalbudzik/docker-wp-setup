@@ -152,7 +152,7 @@ I'm in no way any kind of pro when it comes to `Docker` so to make it all work I
 - joshmoto: [Repo with very good complete `Docker`/`Wordpress` setups collection for different scenarios](https://github.com/joshmoto/docker-wordpress-meetup-demo)
 - bonnick.dev: [Very helpful `Docker`/`Wordpress` setup with detailed instructions for using it with `MailHog`](https://bonnick.dev/posts/developing-wordpress-with-docker)
 - spacelift.io: [`Docker` `Secrets` explained](https://spacelift.io/blog/docker-secrets)
-- objectpartners.com: [Detailed explanation of `Docker`/`Wordpress` setup including `WP-CLI` container & proxy config](https://objectpartners.com/2020/09/01/local-wordpress-development-with-docker/)
+- objectpartners.com: [Detailed explanation of `Docker`/`Wordpress` setup with `WP-CLI` container & proxy config](https://objectpartners.com/2020/09/01/local-wordpress-development-with-docker/)
 - zerowp.com: [`Docker`/`Wordpress` setup with `docker-compose.yml` focused on `WP-CLI` configuration](https://zerowp.com/wordpress-and-docker/)
 
 
