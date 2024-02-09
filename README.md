@@ -116,12 +116,12 @@ Responsible for creating `SSL` certificate for your local domain set in `.env` f
 
 ### Folder Structure, Git Workflow and Access Points
 
-Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. All your actual work happends in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by defalult and you'll wind up with your passwords available online.  
+Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. All your actual work happens in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by defalult and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
 
 Apart from `WP-CLI` run by command line there are three main access points to your local website environment:
-- `Wordpress` should be up and running on `https://local.domain` or `IP` or `localhost`
-- `phpMyAdmin` is available by `localhost:8081`
-- `MailHog` `UI` is working on `localhost:8025` (just remember to configure `SMTP` on you theme or plugin)
+- `Wordpress` should be up and running on `https://DOMAIN` or `IP` set in `.env` file
+- `phpMyAdmin` is available by `IP:8081`
+- `MailHog` `UI` is working on `IP:8025` (just remember to configure `SMTP` on you theme or plugin)
 
 
 
