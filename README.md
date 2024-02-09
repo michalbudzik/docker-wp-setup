@@ -112,16 +112,36 @@ One could argue that all those layers of security are rather pointless here, esp
 
 ### SSL Certificate and Local Domain 
 
-Responsible for creating `SSL` certificate for your local domain set in `.env` file is `mkcert` library. It automatically creates necessary files during the setup process and saves them in `certs` folder. They are at once recognized by your browser thanks to `nginx/default.conf.conf` file resulting in a safe connection. Or at least they should. In `Firefox` one more step might be needed. On `about:config` settings page you have to set `security.enterprise_roots.enabled` to `true`. `certs` folder is by default added to `.gitignore` file as its contents are in no way needed anywhere online.  
+Responsible for creating `SSL` certificate for your local domain set in `.env` file is `mkcert` library. It automatically creates necessary files during the setup process and saves them in `certs` folder. They are at once recognized by your browser thanks to `nginx/default.conf.conf` file resulting in a safe connection. Or at least they should. In `Firefox` one more step might be needed. On `about:config` settings page you have to set `security.enterprise_roots.enabled` to `true` and that should do the trick. `certs` folder is by default added to `.gitignore` file as its contents are in no way needed anywhere online.  
 
-### Folder Structure, Git Workflow and Access Points
+### Usage, Folder Structure, Git Workflow
 
-Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. All your actual work happens in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by defalult and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
+Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. To me it was essential here to fully isolate all setup files from actual work happening in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by default and you'll wind up with your passwords available online. There is a possibility to use `docker-wp-setup` as a submodule but it would need editing `.git/config` file in parent directory and it gets pretty complicated altogether as you shouldn't sync `.git` folder with your remote repository.  
+
+```bash
+project-directory
+|-- .git
+|-- docker-wp-setup
+    |-- config
+    |-- filters
+    |-- install
+    |-- nginx
+    |-- secrets
+    `-- uploads
+`-- wp-content
+    |-- mu-plugins
+    |-- plugins
+    |-- themes
+    `-- uploads
+```
+
+### Access Points
 
 Apart from `WP-CLI` run by command line there are three main access points to your local website environment:
 - `Wordpress` should be up and running on `https://DOMAIN` or `IP` set in `.env` file
 - `phpMyAdmin` is available by `IP:8081`
 - `MailHog` `UI` is working on `IP:8025` (just remember to configure `SMTP` on you theme or plugin)
+
 
 
 
