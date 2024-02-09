@@ -114,5 +114,14 @@ One could argue that all those layers of security are rather pointless here, esp
 
 Responsible for creating `SSL` certificate for your local domain set in `.env` file is `mkcert` library. It automatically creates necessary files during the setup process and saves them in `certs` folder. They are at once recognized by your browser thanks to `nginx/default.conf.conf` file resulting in a safe connection. Or at least they should. In `Firefox` one more step might be needed. On `about:config` settings page you have to set `security.enterprise_roots.enabled` to `true`. `certs` folder is by default added to `.gitignore` file as its contents are in no way needed anywhere online.  
 
-### File Structure and Git workflow
+### Folder Structure, Git Workflow and Access Points
+
+Once you successfully run `Docker` containers you can leave `docker-wp-setup` folder and actually kinda forget about it. If everything is working fine, the only time you need to go back here is to turn off your containers or run them again. Treat it as an on/off switch. All your actual work happends in `wp-content` in main project directory. Also if you're gonna sync your `Wordpress` project with remote `GIT` repository it might be a good idea to put `docker-wp-setup` folder in `.gitignore` file as those `clean` filters mentioned before are not gonna work from parent directory by defalult and you'll wind up with your passwords available online.  
+
+Apart from `WP-CLI` run by command line there are three main access points to your local website environment:
+- `Wordpress` should be up and running on `https://local.domain` or `IP` or `localhost`
+- `phpMyAdmin` is available by `localhost:8081`
+- `MailHog` `UI` is working on `localhost:8025` (just remember to configure `SMTP` on you theme or plugin)
+
+
 
