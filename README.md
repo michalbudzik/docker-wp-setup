@@ -1,4 +1,4 @@
-# Docker Wordpress Setup for local development
+# Docker Wordpress Setup for Local Development
 
 ## Overview
 
@@ -10,28 +10,63 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 4. run `Docker` containers
 5. start working on live local `Wordpress` install with access to `WP-CLI`, `phpMyAdmin`and `MailHog` `SMTP` server  
 
+## Requirements
+
+- [`GIT`](https://git-scm.com/downloads) (actually not necessary for most of it to work, but surely helpful)
+- [`Docker`](https://www.docker.com/products/docker-desktop/) (creates 'virtual machine like' containers on your system)
+- [`mkcert`](mkcert.dev) (generates local `SSL` certificates)
+- [`gsudo`](gerardog.github.io/gsudo) (allows running bash scripts with elevated privileges on `Windows` machine)
+- [`Visual Studio Code`](https://code.visualstudio.com/) (or any other code editor you prefer)
+
 ## Install Instructions
 
-1. Clone repository to your local working directory as a separate folder
-2. Edit `.env` file and fill it with config data
-3. Edit files in `secrets` folder and fill them with relevant values
-4. Run `install/add-hosts.sh` to edit `hosts` file on `Windows` machine
-5. Run `install/create-cert.sh` to create `SSL` certificate for local use
-6. Run `install/git-config.sh` to add `clean` filter to prevent uploading .env and secrets to remote reepository 
+1. Clone repository to your local working directory as a separate folder:
+
+   ```bash
+   git clone https://github.com/michalbudzik/docker-wp-setup
+   ```
+
+2. Navigate to `docker-wp-setup` folder, edit `.env` file and fill it with config data:
+
+   ```bash
+   cd docker-wp-setup
+   code .env
+   ```
+
+3. Edit files in `secrets` folder and fill them with relevant values:
+
+   ```bash
+   code secrets/*
+   ```
+
+4. Run `install/add-hosts.sh` to edit `hosts` file on `Windows` machine:
+
+   ```bash
+   cd install
+   bash add-hosts.sh
+   cd ..
+   ```
+
+5. Run `install/create-cert.sh` to create `SSL` certificate for local use:
+
+   ```bash
+   bash create-cert.sh
+   ```
+
+6. Run `install/git-config.sh` to add `clean` filter to prevent uploading .env and secrets to remote reepository: 
+
+   ```bash
+   bash git-config.sh
+   cd ..
+   ```
+
 7. Run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
    docker-compose up -d
    ```
 
-## Requirements
-
-- [`GIT`](https://git-scm.com/downloads) (actually non necessary for most of it to work, but surely helpful)
-- [`Docker`](https://www.docker.com/products/docker-desktop/) (creates 'virtual machine like' containers on your machine)
-- [`mkcert`](mkcert.dev) (generates local `SSL` certificates)
-- [`gsudo`](gerardog.github.io/gsudo) (allows tu run bash script with elevated privileges on `Windows` machine)
-
-## Detailed decription
+## Detailed Decription
 
 ### Containers
 
@@ -62,26 +97,22 @@ There are also some additional bind mounts for server config files, logs and `SS
    - changing `client_max_body_size` value to allow bigger file uploads in `Wordpress`
 - `config/php.ini` for typical `PHP` settings
 - `config/phpmyadmin.ini` for bigger file uploads in `phpMyAdmin`
-- `logs` for logging server errors to file
+- `logs` for logging server errors to file (by default added to `.gitignore` file)
 - `certs` to load local `SSL` certificates into server 
 
-### Environment variables and secrets
+### Environment Variables and Secrets
 
 Apparently it's a bad practice to hold credentials or other secrets as environment variables hence the `secrets` folder. There are four `.txt` files there, each for a single variable. They are all needed for `Wordpress` database to work. Each file should include only a single secret value corresponding with the filename. No quotes, no double quotes, just value. 
 
 This way `.env` file contains only project's name for a few different display slots in `Docker`, `IP` address and local domain.
 
-`install/git-config.sh` executed during install process makes sure that local `.gitconfig` is being loaded by `GIT`. `.gitconfig` and `.gitattributes` (loaded automatically) define two `clean` filters that accordingly truncate `.env` and files from `secrets` folder removing any sensitive data while pushing repo back to origin.
+`install/git-config.sh` executed during setup process makes sure that local `.gitconfig` is being loaded by `GIT`. `.gitconfig` and `.gitattributes` (loaded automatically) define two `clean` filters that accordingly truncate `.env` and files from `secrets` folder removing any sensitive data while pushing repo back to origin.
 
 One could argue that all those layers of security are rather pointless here, especially considering that database credentials are for local purposes only and in no way connected with the actual live website online, but in case of developing this setup a little further one might realize that suddenly his login data is available for everyone. So let's keep it clean.  
 
-### SSL Certificate and local domain 
+### SSL Certificate and Local Domain 
 
-- mkcert
-- certs directory
-- Firefox fix
+Responsible for creating `SSL` certificate for your local domain set in `.env` file is `mkcert` library. It automatically creates necessary files during the setup process and saves them in `certs` folder. They are at once recognized by your browser thanks to `nginx/default.conf.conf` file resulting in a safe connection. Or at least they should. In `Firefox` one more step might be needed. On `about:config` settings page you have to set `security.enterprise_roots.enabled` to `true`. `certs` folder is by default added to `.gitignore` file as its contents are in no way needed anywhere online.  
 
 ### File Structure and Git workflow
-- separate subfolder for setup
-- .gitignore
-- setup as submodule
+
