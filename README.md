@@ -44,6 +44,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    - `create-cert.sh` to create `SSL` certificate for local use:
    - `git-config.sh` to add `clean` filter to prevent uploading `.env` and secrets to remote reepository
    
+   
    ```bash
    cd install
    bash install.sh
