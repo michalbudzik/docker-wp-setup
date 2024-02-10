@@ -43,8 +43,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    - `add-hosts.sh` to edit `hosts` file on `Windows` machine:
    - `create-cert.sh` to create `SSL` certificate for local use:
    - `git-config.sh` to add `clean` filter to prevent uploading `.env` and secrets to remote reepository
-   
-   
+   \
    ```bash
    cd install
    bash install.sh
