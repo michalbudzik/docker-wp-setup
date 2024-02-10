@@ -43,7 +43,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
 
    ```bash
    cd install
-   bash install.sh
+   bash _install.sh
    cd ..
    ```
 
