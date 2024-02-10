@@ -52,7 +52,7 @@ I needed a quick `Docker` setup allowing me to work locally on `Wordpress` proje
    - `create-cert.sh` to create `SSL` certificate for local use
    - `git-config.sh` to add `clean` filter to prevent uploading `.env` and secrets to remote repository  
      
-5. Make sure `Docker` is active and Run `Docker` containers from `docker-wp-setup` directory:
+5. Make sure `Docker` is active and run `Docker` containers from `docker-wp-setup` directory:
 
    ```bash
    docker-compose up -d
