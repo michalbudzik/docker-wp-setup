@@ -14,8 +14,8 @@ services:
       - ./certs:/etc/certs
       - wordpress:/var/www/html
     ports:
-      - '80:80'
-      - '443:443'
+      - ${IP}:80:80
+      - ${IP}:443:443
   db:
     container_name: ${APP_NAME}-db
     image: mariadb:10.4.27
@@ -33,7 +33,7 @@ services:
       - db:/var/lib/mysql
       # - ./database/initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - 3306:3306
+      - ${IP}:3306:3306
   phpmyadmin:
     container_name: ${APP_NAME}-phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
@@ -54,7 +54,7 @@ services:
     links:
       - db
     ports:
-      - 8081:80
+      - ${IP}:8081:80
   wordpress:
     container_name: ${APP_NAME}-wordpress
     image: wordpress:6.4.3-php8.1-apache
@@ -87,7 +87,7 @@ services:
       - db_password
       - db_prefix
     ports:
-      - 8000:80
+      - ${IP}:8000:80
     volumes:
       - wordpress:/var/www/html
       - ../wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
@@ -127,8 +127,8 @@ services:
     container_name: ${APP_NAME}-mailhog
     image: mailhog/mailhog:latest
     ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
+      - ${IP}:1025:1025 # smtp server
+      - ${IP}:8025:8025 # web ui
 volumes:
   db:
   wordpress:

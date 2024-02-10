@@ -132,9 +132,9 @@ After install process your project directory should look like this. Oh, there ho
 ### Access Points
 
 Apart from `WP-CLI` run by command line there are three main access points to your local website environment:
-- `Wordpress` should be up and running on `https://DOMAIN` or `IP` set in `.env` file
-- `phpMyAdmin` is available by `IP:8081`
-- `MailHog` `UI` is working on `IP:8025` (just remember to configure `SMTP` on you theme or plugin)
+- `Wordpress` should be up and running on `https://DOMAIN`
+- `phpMyAdmin` is available by `https://DOMAIN:8081`
+- `MailHog` `UI` is working on `https://DOMAIN:8025` (just remember to configure `SMTP` on you theme or plugin)
 
 ## Acknowledgments
 
