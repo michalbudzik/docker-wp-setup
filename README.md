@@ -140,8 +140,8 @@ Apart from `WP-CLI` run by command line there are three main access points to yo
 
 I'm in no way any kind of pro when it comes to `Docker` so to make it all work I had to dig through quite a lot of blogs, forums and `Stack Overflow` discussions. Resources below are those who happened to be most useful while preparing this repository:
 
-- @aplauche: [`Docker`/`Wordpress` setup that was the great starting code base for this repo](https://github.com/aplauche/docker-wordpress-local)
-- @joshmoto: [Repo with very good complete `Docker`/`Wordpress` setups collection for different scenarios](https://github.com/joshmoto/docker-wordpress-meetup-demo)
+- [@aplauche](https://github.com/aplauche): [`Docker`/`Wordpress` setup that was the great starting code base for this repo](https://github.com/aplauche/docker-wordpress-local)
+- [@joshmoto](https://github.com/joshmoto): [Repo with very good complete `Docker`/`Wordpress` setups collection for different scenarios](https://github.com/joshmoto/docker-wordpress-meetup-demo)
 - bonnick.dev: [Very helpful `Docker`/`Wordpress` setup with detailed instructions for using it with `MailHog`](https://bonnick.dev/posts/developing-wordpress-with-docker)
 - spacelift.io: [`Docker` `Secrets` explained](https://spacelift.io/blog/docker-secrets)
 - objectpartners.com: [Detailed explanation of `Docker`/`Wordpress` setup with `WP-CLI` container & proxy config](https://objectpartners.com/2020/09/01/local-wordpress-development-with-docker/)
